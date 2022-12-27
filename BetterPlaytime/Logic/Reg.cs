@@ -9,6 +9,7 @@ public static class Reg
     private static Regex PlaytimeRegexDE = new Regex(@"^Gesamtspielzeit:(?: (?<days>\d+) Tage?,)?(?: (?<hours>\d+) Stunden?,)? (?<minutes>\d+) Minuten?");
     private static Regex PlaytimeRegexFR = new Regex(@"^Temps de jeu total:(?: (?<days>\d+) jours?,)?(?: (?<hours>\d+) heures?,)? (?<minutes>\d+) minutes?");
     private static Regex PlaytimeRegexJP = new Regex(@"^累積プレイ時間 (?:(?<days>\d+)日)?(?:(?<hours>\d+)時間)?(?<minutes>\d+)分");
+    private static Regex PlaytimeRegexCN = new Regex(@"^累计游戏时间(?:(?<days>\d+)天?)?(?:(?<hours>\d+)小时?)?(?<minutes>\d+)分钟");
 
 
     public static Match Match(string message, ClientLanguage language)
@@ -19,6 +20,7 @@ public static class Reg
             ClientLanguage.German => PlaytimeRegexDE,
             ClientLanguage.French => PlaytimeRegexFR,
             ClientLanguage.Japanese => PlaytimeRegexJP,
+            ClientLanguage.ChineseSimplified => PlaytimeRegexCN,
             _ => PlaytimeRegexEN
         };
         return reg.Match(message);
